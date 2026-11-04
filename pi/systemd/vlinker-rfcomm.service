@@ -1,0 +1,20 @@
+[Unit]
+Description=Vgate vLinker FS RFCOMM Connection
+After=bluetooth.service
+Requires=bluetooth.service
+
+[Service]
+Type=simple
+
+ExecStartPre=/usr/sbin/rfkill unblock bluetooth
+ExecStartPre=/bin/sh -c '/usr/bin/rfcomm release 0 2>/dev/null || true'
+
+ExecStart=/usr/bin/rfcomm connect 0 8C:08:79:AC:44:85 1
+
+ExecStop=/bin/sh -c '/usr/bin/rfcomm release 0 2>/dev/null || true'
+
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

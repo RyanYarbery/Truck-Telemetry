@@ -1,0 +1,27 @@
+=== KOEO SNAPSHOT ===
+{
+    "timestamp": 1791850532.6131372,
+    "connected": true,
+    "rpm": 0.0,
+    "speed_mph": 0.0,
+    "icp_psi": 0.0,
+    "ipr_pct": 14.84375,
+    "eot_f": 188.15,
+    "tft_f": 119.5,
+    "map_kpa": 85.0,
+    "voltage": 12.9,
+    "mfdes_mg": 0.0,
+    "fuel_pw_ms": 0.0,
+    "gph": 0.0,
+    "instant_mpg": null,
+    "trip_miles": 0.08509325982938806,
+    "trip_fuel_gal": 0.05023676342163804,
+    "trip_mpg": 1.6938443887238284,
+    "runtime_seconds": 514.9060869069991,
+    "fuel_calibration": 1.0
+}
+
+=== LINK ===
+rfcomm0: E4:5F:01:52:B8:44 -> 8C:08:79:AC:44:85 channel 1 connected [reuse-dlc release-on-hup tty-attached]
+	Name: vLinker FS 67768
+	Connected: yes

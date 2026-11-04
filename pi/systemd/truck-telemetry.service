@@ -1,0 +1,26 @@
+[Unit]
+Description=2001 F-350 7.3L Truck Telemetry
+After=bluetooth.service vlinker-rfcomm.service
+Requires=bluetooth.service vlinker-rfcomm.service
+
+[Service]
+Type=simple
+User=ryan
+Group=ryan
+WorkingDirectory=/opt/truck-telemetry
+
+RuntimeDirectory=truck-telemetry
+RuntimeDirectoryMode=0755
+
+ExecStart=/usr/bin/python3 -u /opt/truck-telemetry/telemetry.py
+
+# SIGINT lets telemetry.py run its clean-shutdown handler
+# and save trip state before exiting.
+KillSignal=SIGINT
+TimeoutStopSec=10
+
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

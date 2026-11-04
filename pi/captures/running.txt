@@ -1,0 +1,32 @@
+=== RUNNING SNAPSHOT ===
+{
+    "timestamp": 1791850471.437868,
+    "connected": true,
+    "rpm": 676.0,
+    "speed_mph": 0.0,
+    "icp_psi": 483.92999999999995,
+    "ipr_pct": 7.8125,
+    "eot_f": 189.5,
+    "tft_f": 119.75,
+    "map_kpa": 84.0,
+    "voltage": 14.3,
+    "mfdes_mg": 6.0625,
+    "fuel_pw_ms": 2.528,
+    "gph": 0.30932660387908056,
+    "instant_mpg": null,
+    "trip_miles": 0.08509325982938806,
+    "trip_fuel_gal": 0.04923592211421538,
+    "trip_mpg": 1.7282759451928689,
+    "runtime_seconds": 501.68607419799923,
+    "fuel_calibration": 1.0
+}
+
+=== TRIP STATE ===
+Trip miles:       0.09 mi
+Fuel used:        0.049 gal
+Average MPG:      1.7
+Engine runtime:   00:08:21
+Fuel calibration: 1.00000
+
+=== RFCOMM ===
+rfcomm0: E4:5F:01:52:B8:44 -> 8C:08:79:AC:44:85 channel 1 connected [reuse-dlc release-on-hup tty-attached]
