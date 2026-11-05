@@ -118,6 +118,32 @@ Fix whatever fails, then test: key OFF, wait 90 s, the Pi should halt (activity 
 
 ## Part 3: power-cut stage
 
+### Revision 2026-11-04: use a relay, not low-side switching
+
+**This replaces Q1's connection in the schematic above, R4's value, and the Q1 gate rows in the voltage
+table.** The old design put Q1 in the converter's negative input, so with Q1 off the Pi's ground floats toward
+12 V. Pi 5 V could then reach Q1's gate through R5 and turn Q1 back on, and pins 11 and 13 would sit far from
+the truck-ground parts they connect to. Now Q1 switches only a relay coil, and the converter, Pi and sense
+stage all stay on solid truck ground.
+
+| Connection | Goes to |
+|------------|---------|
+| Relay 30 | Fused constant battery +12 V (the converter's existing feed) |
+| Relay 87 | Converter IN(+) |
+| Relay 85 | Same fused +12 V as pin 30 |
+| Relay 86 | Q1 drain |
+| 1N5408 across the coil | Stripe to 85, other end to 86 |
+| Q1 source | Truck ground |
+| Converter IN(−) | Truck ground, directly |
+
+R4 becomes 200 kΩ (2 × 100 kΩ in series), which limits a TVS clamp event to ≈8.3 V at Q1's gate, so the extra
+gate TVS is no longer needed. Q1 gate: ≈3.8 V at 12 V key ON and ≈3.8 V on keep-alive. Keep-alive loads the
+sense stage through R4 and puts ≈0.16 V on Q0's gate, well below its threshold. The coil draws roughly 150 mA
+(≈2 W) while on, and the whole stage draws nothing once off.
+
+The key-OFF blip seen while cranking does not matter once the Pi has booted, because keep-alive holds Q1.
+A hung Pi holds the power on, because nothing but `poweroff` releases keep-alive.
+
 ### Pi config
 
 Add to `/boot/firmware/config.txt` (older images: `/boot/config.txt`; DietPi: `/boot/dietpiEnv.txt` overlays line):
