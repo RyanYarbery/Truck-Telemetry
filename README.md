@@ -30,10 +30,19 @@ therefore meant writing that service, not repairing it. The sense board may be f
 meter check (part 1).
 
 **`truck-ignition` now exists and is enabled on the Pi** (`pi/opt/truck-ignition/`, `pi/systemd/`). It powers
-off after 45 s of key OFF. It has only been bench-tested, by faking key OFF with `pinctrl set 17 pu`: it stays
-up on LOW, cancels when the key returns, and shuts down cleanly after the full delay. It has not been tested
-with the real sense board. One drop is unexplained: after the first replug, the Pi left the network about a
-minute after coming back. After a second replug with 30 s unpowered, GPIO17 read LOW and it stayed up.
+off after 45 s of key OFF. Tested in the truck with the real key and sense board on 2026-11-04: a 14 s key OFF
+cancelled, and a full key OFF powered down 46 s later. The Pi still can't restart itself on key ON, and the
+5 V stays on after shutdown, until part 3 is built.
+
+GPIO17 goes HIGH for about 1 s while cranking, which the service rides through. `REVISED-CIRCUIT.md` assumed
+fuse 27 stays live in START, so check node A with a meter in START and allow for it in part 3.
+
+One drop on the bench is unexplained: after the first replug, the Pi left the network about a minute after
+coming back. The likely cause is the test's pull-up surviving a quick replug, but this is not confirmed. After
+a replug with 30 s unpowered, GPIO17 read LOW and it stayed up.
+
+The phone can hold the vLinker's Bluetooth connection and lock the Pi out. It reconnects by itself once the
+phone lets go.
 
 **The Wi-Fi profile had been wiped.** `/etc/netplan/90-NM-*.yaml` was 0 bytes and `system-connections` was
 empty, both stamped 2026-10-17 05:22. A hard power cut during a write is the likely cause, but this is not
@@ -45,9 +54,8 @@ laptop's SSH key is installed and `ryan` has passwordless sudo on the Pi.
 
 ## Next
 
-1. Put the Pi back in the truck and meter-check the sense board (part 1).
-2. Test `truck-ignition` with a real key cycle.
-3. Resolve the ground question below, then build the power cut (part 3).
+1. Meter-check node A in START, and make the R1 change (part 1).
+2. Resolve the ground question below, then build the power cut (part 3).
 
 ## Open question: ground reference in part 3
 
