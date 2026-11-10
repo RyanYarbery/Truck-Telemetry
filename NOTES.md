@@ -82,5 +82,4 @@ See `SHUTDOWN-PROBLEM.md` (2026-10-24): the monitor stays on after key OFF becau
 
 ## References
 
-- ChatGPT share of the design thread: https://chatgpt.com/share/6add1693-36d4-83e8-befd-f6e91eae282a
 - Datasheet facts quoted in-thread: RFP30N06LE 60 V logic-level N-MOSFET, gate ±10/−8 V max; 1.5KE18A unidirectional TVS, 15.3 V standoff, ≈25.2 V max clamp.

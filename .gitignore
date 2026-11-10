@@ -1,2 +1,14 @@
 __pycache__/
 *.pyc
+.venv/
+venv/
+*.log
+
+# SD card files that hold the Wi-Fi key or the login password hash: never commit them
+network-config
+user-data
+*.nmconnection
+
+# Local environment files (the Bluetooth address lives in /etc/default/vlinker-rfcomm on the Pi)
+.env
+*.env

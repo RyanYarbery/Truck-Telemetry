@@ -22,6 +22,6 @@
 }
 
 === LINK ===
-rfcomm0: E4:5F:01:52:B8:44 -> 8C:08:79:AC:44:85 channel 1 connected [reuse-dlc release-on-hup tty-attached]
-	Name: vLinker FS 67768
+rfcomm0: <pi-bt-address> -> <vlinker-bt-address> channel 1 connected [reuse-dlc release-on-hup tty-attached]
+	Name: vLinker FS <id>
 	Connected: yes

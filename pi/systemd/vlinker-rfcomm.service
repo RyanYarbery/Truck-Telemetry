@@ -6,10 +6,14 @@ Requires=bluetooth.service
 [Service]
 Type=simple
 
+# VLINKER_MAC is the adapter's Bluetooth address (find it with: bluetoothctl devices).
+# Copy vlinker-rfcomm.env.example to /etc/default/vlinker-rfcomm and set it there.
+EnvironmentFile=/etc/default/vlinker-rfcomm
+
 ExecStartPre=/usr/sbin/rfkill unblock bluetooth
 ExecStartPre=/bin/sh -c '/usr/bin/rfcomm release 0 2>/dev/null || true'
 
-ExecStart=/usr/bin/rfcomm connect 0 8C:08:79:AC:44:85 1
+ExecStart=/usr/bin/rfcomm connect 0 ${VLINKER_MAC} 1
 
 ExecStop=/bin/sh -c '/usr/bin/rfcomm release 0 2>/dev/null || true'
 
